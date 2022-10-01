@@ -29,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home_fragment,
                 R.id.nav_add_fragment,
-                R.id.nav_view_fragment)
+                R.id.nav_view_fragment,
+                R.id.nav_activity_room,
+                R.id.nav_login_fragment,
+                R.id.nav_register_fragment,
+                R.id.nav_history_fragment)
 //to display the Navigation button as a drawer symbol,not being shown as an Up button
                 .setOpenableLayout(binding.drawerLayout)
                 .build();
