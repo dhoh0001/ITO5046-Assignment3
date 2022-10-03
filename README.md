@@ -22,11 +22,12 @@ Mobile and  Distributed Systems Plan
          > challenge name
          > chalelnge details
       3) attempts
+         > attempt id
          > user id
          > challenge id
          > date attempted
          > attempt status
-      4) Firebase realtime database
+      5) Firebase realtime database
          > reflect similar table structure as the room
          > sync on any action, including challenge creation and attempts
 - Build individual screens

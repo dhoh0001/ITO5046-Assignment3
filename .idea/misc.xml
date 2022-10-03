@@ -6,8 +6,11 @@
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1555" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1555" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/drawable/side_nav_bar.xml" value="0.1555" />
+        <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/activity_home.xml" value="0.12259371833839919" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/activity_main.xml" value="0.20277777777777778" />
+        <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/activity_register.xml" value="0.18796296296296297" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/activity_room.xml" value="0.20462962962962963" />
+        <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/activity_test.xml" value="0.18796296296296297" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/add_fragment.xml" value="0.20462962962962963" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/app_bar_main.xml" value="0.20462962962962963" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/attempt_challenge_fragment.xml" value="0.20462962962962963" />
@@ -20,6 +23,7 @@
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/nav_header_main.xml" value="0.20462962962962963" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/register_fragment.xml" value="0.20462962962962963" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/room_fragment.xml" value="0.20462962962962963" />
+        <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/rv_layout.xml" value="0.10182370820668693" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/search_fragment.xml" value="0.20462962962962963" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/search_fragment2.xml" value="0.20462962962962963" />
         <entry key="..\:/Users/danie/AndroidStudioProjects/ITO5046Assignment3/app/src/main/res/layout/view_fragment.xml" value="0.20462962962962963" />

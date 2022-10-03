@@ -4,35 +4,23 @@
     tools:showIn="navigation_view">
     <item
         android:id="@+id/nav_home_fragment"
-        android:title="Home Fragment" />
-    <item
-        android:id="@+id/nav_add_fragment"
-        android:title="Add Fragment" />
-    <item
-        android:id="@+id/nav_view_fragment"
-        android:title="View Fragment" />
+        android:title="Home" />
     <item
         android:id="@+id/nav_activity_room"
         android:title="Room Fragment" />
     <item
-        android:id="@+id/nav_login_fragment"
-        android:title="login Fragment" />
-    <item
         android:id="@+id/nav_register_fragment"
-        android:title="register Fragment" />
+        android:title="Edit Profile" />
     <item
         android:id="@+id/nav_history_fragment"
-        android:title="history Fragment" />
+        android:title="History" />
     <item
         android:id="@+id/nav_search_fragment"
-        android:title="search Fragment" />
+        android:title="Challenges Nearby" />
     <item
         android:id="@+id/nav_create_challenge_fragment"
-        android:title="create challenge Fragment" />
-    <item
-        android:id="@+id/nav_attempt_challenge_fragment"
-        android:title="attempt challenge Fragment" />
+        android:title="Create challenge" />
     <item
         android:id="@+id/nav_leaderboard_fragment"
-        android:title="leaderboard Fragment" />
+        android:title="Leaderboard" />
 </menu>

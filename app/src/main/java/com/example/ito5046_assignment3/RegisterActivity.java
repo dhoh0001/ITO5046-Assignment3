@@ -1,34 +1,31 @@
-package com.example.ito5046_assignment3.fragment;
+package com.example.ito5046_assignment3;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.ito5046_assignment3.databinding.RegisterFragmentBinding;
-import com.example.ito5046_assignment3.entity.Customer;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+
+import com.example.ito5046_assignment3.databinding.ActivityMainBinding;
+import com.example.ito5046_assignment3.databinding.ActivityRegisterBinding;
 import com.example.ito5046_assignment3.entity.User;
-import com.example.ito5046_assignment3.viewmodel.CustomerViewModel;
-import com.example.ito5046_assignment3.viewmodel.SharedViewModel;
 import com.example.ito5046_assignment3.viewmodel.UserViewModel;
 
-public class RegisterFragment  extends Fragment {
-    private RegisterFragmentBinding binding;
-    private UserViewModel userViewModel;
-    public RegisterFragment(){}
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        binding = RegisterFragmentBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
+public class RegisterActivity extends AppCompatActivity {
 
-        this.userViewModel = new
-                ViewModelProvider(requireActivity()).get(UserViewModel.class);
+    private ActivityRegisterBinding binding;
+    private UserViewModel userViewModel;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityRegisterBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+        userViewModel = ViewModelProvider.AndroidViewModelFactory
+                .getInstance(getApplication())
+                .create(UserViewModel.class);
 
         binding.register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -53,15 +50,13 @@ public class RegisterFragment  extends Fragment {
                             , password, salt, email
                             , gender, age_int, fitness_int,0);
                     userViewModel.insert(user);
+                    Intent intent = new Intent(RegisterActivity.this,
+                            MainActivity.class);
+                    startActivity(intent);
                     //binding.textViewAdd.setText("Added Record: " + name + " "
                     //        + surname + " " + salary);
                 }
-            }});
-        return view;
-    }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+            }
+        });
     }
 }
