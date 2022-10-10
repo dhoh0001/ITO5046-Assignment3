@@ -1,22 +1,33 @@
 package com.example.ito5046_assignment3.adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ito5046_assignment3.R;
 import com.example.ito5046_assignment3.databinding.RvLayoutBinding;
+import com.example.ito5046_assignment3.entity.Challenge;
+import com.example.ito5046_assignment3.fragment.AttemptChallengeFragment;
+import com.example.ito5046_assignment3.model.AttemptModel;
 import com.example.ito5046_assignment3.model.CourseResult;
 
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
-    private static List<CourseResult> courseResults;
+    private static List<Challenge> courseResults;
+    private FragmentManager fragmentManager;
 
-    public RecyclerViewAdapter(List<CourseResult> courseResults) {
+    public RecyclerViewAdapter(List<Challenge> courseResults, FragmentManager fragmentManager) {
         this.courseResults = courseResults;
+        this.fragmentManager = fragmentManager;
     }
 
     //creates a new viewholder that is constructed with a new View, inflated from a layout
@@ -33,14 +44,25 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.ViewHolder viewHolder, int
             position) {
-        final CourseResult unit = courseResults.get(position);
-        viewHolder.binding.tvRvunit.setText(unit.getUnit());
-        viewHolder.binding.tvRvmark.setText((Integer.toString(unit.getMark())));
+        final Challenge unit = courseResults.get(position);
+        viewHolder.binding.tvRvunit.setText(unit.challengeName);
+        viewHolder.binding.tvRvmark.setText((unit.challengeDetails));
+        viewHolder.binding.attempt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*courseResults.remove(unit);
+                notifyDataSetChanged();*/
+                Bundle bundle=new Bundle();
+                AttemptModel attempt = new AttemptModel();
+                attempt.id = unit.challenge_id;
+                bundle.putParcelable("attempt", attempt);
+                Navigation.findNavController(v).navigate(R.id.nav_attempt_challenge_fragment, bundle);
+            }
+        });
         viewHolder.binding.ivItemDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                courseResults.remove(unit);
-                notifyDataSetChanged();
+                Navigation.findNavController(v).navigate(R.id.nav_map_Fragment);
             }
         });
     }
@@ -50,7 +72,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return courseResults.size();
     }
 
-    public void addUnits(List<CourseResult> results) {
+    public void addUnits(List<Challenge> results) {
         courseResults = results;
         notifyDataSetChanged();
     }

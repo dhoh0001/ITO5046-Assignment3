@@ -12,7 +12,7 @@ import com.example.ito5046_assignment3.entity.Challenge;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Challenge.class}, version = 1, exportSchema = false)
+@Database(entities = {Challenge.class}, version = 3, exportSchema = false)
 public abstract class ChallengeDatabase extends RoomDatabase {
     public abstract ChallengeDAO ChallengeDao();
     private static ChallengeDatabase INSTANCE;

@@ -50,12 +50,12 @@ Mobile and  Distributed Systems Plan
                  navigate to other screens.
        > add welcome message, Welcome! Current Date: Last challenge date:
     
-    4) Data entry screen
+    4) Data entry screen - this is now the create challenge screen
        > Allow the user to enter details with appropriate UI elements. 
        > Add the Save and Edit buttons. 
        > After Save, disable data entry, enabled if Edit is clicked.
        > Provide confirmation or error messages.
-    5) Data showcase and Android room - table view
+    5) Data showcase and Android room - table view - this is now the view challenge screen
        > Store all data using the Android room with all the components(repository, 
                  ViewModel, LiveData) in a table.
        > The Save button in Task 3 will insert all this data in room and the update

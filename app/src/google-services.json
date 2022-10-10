@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "102705389260",
+    "firebase_url": "https://black-copilot-358810-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "black-copilot-358810",
+    "storage_bucket": "black-copilot-358810.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102705389260:android:545ee46d783f916e2eec69",
+        "android_client_info": {
+          "package_name": "com.example.ito5046_assignment3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102705389260-cm8rab38pcelmsdf53o5aie8ic39r8r5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrUg62ti6fMWHtSdEtEdXS0b2mmxw_hN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102705389260-cm8rab38pcelmsdf53o5aie8ic39r8r5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

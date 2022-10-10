@@ -1,25 +1,26 @@
 package com.example.ito5046_assignment3;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.ito5046_assignment3.databinding.ActivityMainBinding;
-import com.example.ito5046_assignment3.entity.Customer;
+import com.example.ito5046_assignment3.retrofit.RetrofitClient;
+import com.example.ito5046_assignment3.retrofit.RetrofitInterface;
 import com.example.ito5046_assignment3.entity.User;
-import com.example.ito5046_assignment3.viewmodel.CustomerViewModel;
 import com.example.ito5046_assignment3.viewmodel.UserViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.mapbox.maps.MapView;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -29,7 +30,12 @@ public class MainActivity extends AppCompatActivity {
     /*private AppBarConfiguration mAppBarConfiguration;
     private CustomerViewModel customerViewModel;*/
     private UserViewModel userViewModel;
+    private FirebaseAuth auth;
+    private DatabaseReference mDb;
+    private DatabaseReference testEndPoint;
+    private MapView mapView;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +47,14 @@ public class MainActivity extends AppCompatActivity {
                 .getInstance(getApplication())
                 .create(UserViewModel.class);
 
+        /*auth = FirebaseAuth.getInstance();*/
+
         binding.login.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
+
+                /**/
+
                 String email = binding.username.getEditText().getText().toString();
                 String password = binding.password.getEditText().getText().toString();
                 CompletableFuture<User> userCompletableFuture = userViewModel.findByUsername(email);
@@ -52,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                     if(password != null && password.equals(user.password)) {
                         Intent intent = new Intent(MainActivity.this,
                                 TestActivity.class);
+                        AppState.currentUserIdLoggedIn = user.user_id;
+                        AppState.currentUserLoggedIn = user.email;
                         startActivity(intent);
                     } else {
                         //TODO add failure toast
@@ -59,6 +71,17 @@ public class MainActivity extends AppCompatActivity {
                     return user;
                 });
 
+
+                /*auth.signInWithEmailAndPassword(email,
+                        password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        String msg = "Login Successful";
+                        Toast.makeText(getApplicationContext(),
+                                msg,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });*/
             }
         });
 

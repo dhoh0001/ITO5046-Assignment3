@@ -15,11 +15,14 @@
         android:id="@+id/nav_history_fragment"
         android:title="History" />
     <item
-        android:id="@+id/nav_search_fragment"
+        android:id="@+id/nav_challenges_nearby_fragment"
         android:title="Challenges Nearby" />
     <item
         android:id="@+id/nav_create_challenge_fragment"
-        android:title="Create challenge" />
+        android:title="Create/Edit challenge" />
+    <item
+        android:id="@+id/nav_view_challenge_fragment"
+        android:title="Your challenges" />
     <item
         android:id="@+id/nav_leaderboard_fragment"
         android:title="Leaderboard" />

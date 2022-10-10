@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ITO5046-Assignment3</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoiZGhvaDAwMDEiLCJhIjoiY2w2bHphbmFiMDJzcDNlcXFwbW83cDJsYiJ9.A5eUUVQZ9lh7dG0znZaryw</string>
 </resources>

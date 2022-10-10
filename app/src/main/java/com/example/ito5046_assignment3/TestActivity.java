@@ -20,6 +20,7 @@ public class TestActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private CustomerViewModel customerViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +30,15 @@ public class TestActivity extends AppCompatActivity {
         setContentView(view);
 
         setSupportActionBar(binding.appBar.toolbar);
-mAppBarConfiguration = new AppBarConfiguration.Builder(
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
         R.id.nav_home_fragment,
         R.id.nav_activity_room,
-        R.id.nav_history_fragment)
+        R.id.nav_register_fragment,
+        R.id.nav_history_fragment,
+        R.id.nav_challenges_nearby_fragment,
+        R.id.nav_create_challenge_fragment,
+        R.id.nav_view_challenge_fragment,
+        R.id.nav_leaderboard_fragment)
 //to display the Navigation button as a drawer symbol,not being shown as an Up button
         .setOpenableLayout(binding.drawerLayout)
         .build();
