@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -11,16 +12,22 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.ito5046_assignment3.RegisterActivity;
 import com.example.ito5046_assignment3.databinding.RegisterFragmentBinding;
 import com.example.ito5046_assignment3.entity.Customer;
 import com.example.ito5046_assignment3.entity.User;
 import com.example.ito5046_assignment3.viewmodel.UserViewModel;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterFragment  extends Fragment {
     private RegisterFragmentBinding binding;
     private UserViewModel userViewModel;
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
     public RegisterFragment(){}
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +65,18 @@ public class RegisterFragment  extends Fragment {
                 String gender = binding.gender.getEditText().getText().toString();
                 String fitness = binding.fitness.getEditText().getText().toString();
 
+                Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+                if(!matcher.find()) {
+                    Toast.makeText(getContext(),
+                                    "Incorrect email format",
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                } else if(password.length() < 6) {
+                    Toast.makeText(getContext(),
+                                    "Password needs to be more than 6 characters",
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                } else {
                 if ((!firstname.isEmpty() && firstname!=null) &&
                         (!lastname.isEmpty() && lastname!=null) &&
                         (!password.isEmpty() && password!=null) &&
@@ -72,8 +91,13 @@ public class RegisterFragment  extends Fragment {
                             , gender, age_int, fitness_int,0);
                     user.user_id = Integer.parseInt(user_id);
                     userViewModel.update(user);
+                    Toast.makeText(getContext(),
+                                    "User updated",
+                                    Toast.LENGTH_SHORT)
+                            .show();
                     //binding.textViewAdd.setText("Added Record: " + name + " "
                     //        + surname + " " + salary);
+                    }
                 }
             }});
         return view;

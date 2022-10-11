@@ -18,6 +18,8 @@ import com.example.ito5046_assignment3.databinding.ActivityRegisterBinding;
 import com.example.ito5046_assignment3.databinding.HomeFragmentBinding;
 import com.example.ito5046_assignment3.databinding.MapFragmentBinding;
 import com.example.ito5046_assignment3.entity.User;
+import com.example.ito5046_assignment3.model.AttemptModel;
+import com.example.ito5046_assignment3.model.CoordinatesModel;
 import com.example.ito5046_assignment3.viewmodel.UserViewModel;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
@@ -44,7 +46,11 @@ public class MapFragment extends Fragment {
         binding = MapFragmentBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        final Point point = Point.fromLngLat(145.045837, -37.876823 );
+        Bundle bundle = getArguments();
+        double longitude = ((CoordinatesModel) bundle.getParcelable("coordinates")).longitude;
+        double lattitude = ((CoordinatesModel) bundle.getParcelable("coordinates")).lattitude;
+
+        final Point point = Point.fromLngLat(longitude, lattitude );
         CameraOptions position = new CameraOptions.Builder()
                 .zoom(13.0)
                 .center(point)

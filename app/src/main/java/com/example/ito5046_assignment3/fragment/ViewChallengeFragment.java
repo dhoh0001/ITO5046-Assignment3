@@ -56,38 +56,56 @@ public class ViewChallengeFragment extends Fragment {
 
                 TextView textArray = new TextView(getContext());
                 textArray.setId(i + 111);
-                textArray.setText("" + challenges.get(i).challenge_id);
+                textArray.setText("id: " + challenges.get(i).challenge_id);
                 textArray.setTextColor(Color.WHITE);
                 textArray.setPadding(5, 5, 5, 5);
                 tr_head.addView(textArray);
 
-                TextView textArray2 = new TextView(getContext());
-                textArray2.setId(i + 111);
-                textArray2.setText("" + challenges.get(i).location_lattitude);
-                textArray2.setTextColor(Color.WHITE);
-                textArray2.setPadding(5, 5, 5, 5);
-                tr_head.addView(textArray2);
+                TableRow tr_coor= new TableRow(getContext());
+                tr_coor.setId(i + 1);
+                tr_coor.setBackgroundColor(Color.GRAY);
+                tr_coor.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.MATCH_PARENT,
+                        TableRow.LayoutParams.WRAP_CONTENT));
+                TextView textArray2a = new TextView(getContext());
+                textArray2a.setId(i + 111);
+                textArray2a.setText("lattitude: " + challenges.get(i).location_lattitude);
+                textArray2a.setTextColor(Color.WHITE);
+                textArray2a.setPadding(5, 5, 5, 5);
+                tr_coor.addView(textArray2a);
+                TextView textArray2b = new TextView(getContext());
+                textArray2b.setId(i + 111);
+                textArray2b.setText("longitude: " + challenges.get(i).location_longitude);
+                textArray2b.setTextColor(Color.WHITE);
+                textArray2b.setPadding(5, 5, 5, 5);
+                tr_coor.addView(textArray2b);
 
+                TableRow tr_head2a= new TableRow(getContext());
+                tr_head2a.setId(i + 1);
+                tr_head2a.setBackgroundColor(Color.GRAY);
+                tr_head2a.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.MATCH_PARENT,
+                        TableRow.LayoutParams.WRAP_CONTENT));
                 TextView textArray3 = new TextView(getContext());
                 textArray3.setId(i + 111);
-                textArray3.setText("" + challenges.get(i).challengeName);
+                textArray3.setText("Title: " + challenges.get(i).challengeName);
                 textArray3.setTextColor(Color.WHITE);
                 textArray3.setPadding(5, 5, 5, 5);
-                tr_head.addView(textArray3);
+                tr_head2a.addView(textArray3);
 
-                TableRow tr_head2= new TableRow(getContext());
-                tr_head2.setId(i + 1);
-                tr_head2.setBackgroundColor(Color.GRAY);
-                tr_head2.setLayoutParams(new TableRow.LayoutParams(
+                TableRow tr_head2b= new TableRow(getContext());
+                tr_head2b.setId(i + 1);
+                tr_head2b.setBackgroundColor(Color.GRAY);
+                tr_head2b.setLayoutParams(new TableRow.LayoutParams(
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.WRAP_CONTENT));
 
                 TextView textArray4 = new TextView(getContext());
                 textArray4.setId(i + 111);
-                textArray4.setText("" + challenges.get(i).challengeDetails);
+                textArray4.setText("Details: " + challenges.get(i).challengeDetails);
                 textArray4.setTextColor(Color.WHITE);
                 textArray4.setPadding(5, 5, 5, 5);
-                tr_head2.addView(textArray4);
+                tr_head2b.addView(textArray4);
 
                 TableRow tr_head3= new TableRow(getContext());
                 tr_head3.setId(i + 1);
@@ -105,7 +123,13 @@ public class ViewChallengeFragment extends Fragment {
                 binding.textViewRead.addView(tr_head, new TableLayout.LayoutParams(
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.WRAP_CONTENT));
-                binding.textViewRead.addView(tr_head2, new TableLayout.LayoutParams(
+                binding.textViewRead.addView(tr_coor, new TableLayout.LayoutParams(
+                        TableRow.LayoutParams.MATCH_PARENT,
+                        TableRow.LayoutParams.WRAP_CONTENT));
+                binding.textViewRead.addView(tr_head2a, new TableLayout.LayoutParams(
+                        TableRow.LayoutParams.MATCH_PARENT,
+                        TableRow.LayoutParams.WRAP_CONTENT));
+                binding.textViewRead.addView(tr_head2b, new TableLayout.LayoutParams(
                         TableRow.LayoutParams.MATCH_PARENT,
                         TableRow.LayoutParams.WRAP_CONTENT));
                 binding.textViewRead.addView(tr_head3, new TableLayout.LayoutParams(

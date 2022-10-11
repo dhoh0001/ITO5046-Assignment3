@@ -18,11 +18,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
     private UserViewModel userViewModel;
     private FirebaseAuth auth;
+
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
 
     @Override
@@ -65,27 +71,43 @@ public class RegisterActivity extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             }
                         });*/
-
-                if ((!firstname.isEmpty() && firstname!=null) &&
-                        (!lastname.isEmpty() && lastname!=null) &&
-                        (!password.isEmpty() && password!=null) &&
-                        (!email.isEmpty() && email!=null) &&
-                        (!age.isEmpty() && age!=null) &&
-                        (!gender.isEmpty() && gender!=null) &&
-                        (!fitness.isEmpty() && fitness!=null)) {
-                    int age_int = Integer.parseInt(age);
-                    int fitness_int = Integer.parseInt(fitness);
-                    User user = new User( firstname, lastname
-                            , password, salt, email
-                            , gender, age_int, fitness_int,0);
-                    userViewModel.insert(user);
-                    Intent intent = new Intent(RegisterActivity.this,
-                            MainActivity.class);
-                    startActivity(intent);
-                    //binding.textViewAdd.setText("Added Record: " + name + " "
-                    //        + surname + " " + salary);
+                Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+                if(!matcher.find()) {
+                    Toast.makeText(RegisterActivity.this,
+                                    "Incorrect email format",
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                } else if(password.length() < 6) {
+                    Toast.makeText(RegisterActivity.this,
+                                    "Password needs to be more than 6 characters",
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                } else {
+                        if ((!firstname.isEmpty() && firstname != null) &&
+                                (!lastname.isEmpty() && lastname != null) &&
+                                (!password.isEmpty() && password != null) &&
+                                (!email.isEmpty() && email != null) &&
+                                (!age.isEmpty() && age != null) &&
+                                (!gender.isEmpty() && gender != null) &&
+                                (!fitness.isEmpty() && fitness != null)) {
+                            int age_int = Integer.parseInt(age);
+                            int fitness_int = Integer.parseInt(fitness);
+                            User user = new User(firstname, lastname
+                                    , password, salt, email
+                                    , gender, age_int, fitness_int, 0);
+                            userViewModel.insert(user);
+                            Intent intent = new Intent(RegisterActivity.this,
+                                    MainActivity.class);
+                            startActivity(intent);
+                            Toast.makeText(RegisterActivity.this,
+                                            "User registered",
+                                            Toast.LENGTH_SHORT)
+                                    .show();
+                            //binding.textViewAdd.setText("Added Record: " + name + " "
+                            //        + surname + " " + salary);
+                        }
+                    }
                 }
-            }
         });
     }
 }

@@ -13,6 +13,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.ito5046_assignment3.AppState;
 import com.example.ito5046_assignment3.databinding.HistoryFragmentBinding;
 import com.example.ito5046_assignment3.databinding.ViewFragmentBinding;
 import com.example.ito5046_assignment3.entity.Attempt;
@@ -78,33 +79,45 @@ public class HistoryFragment extends Fragment {
             int count5DaysAgo = 0;
             int count6DaysAgo = 0;
 
+            int totalCount = 0;
+
             for(Attempt attempt : attempts) {
+                if(attempt.userId == AppState.currentUserIdLoggedIn) {
+                    totalCount++;
+                }
                 if(attempt.dateAttempted < currentDate &&
-                        attempt.dateAttempted > (currentDate - 1 * 24 * 60 * 60 * 1000)) {
+                        attempt.dateAttempted > (currentDate - 1 * 24 * 60 * 60 * 1000) &&
+                        attempt.userId == AppState.currentUserIdLoggedIn) {
                     count0DaysAgo++;
                 }
                 if(attempt.dateAttempted < (currentDate - 1 * 24 * 60 * 60 * 1000) &&
-                        attempt.dateAttempted > (currentDate - 2 * 24 * 60 * 60 * 1000)) {
+                        attempt.dateAttempted > (currentDate - 2 * 24 * 60 * 60 * 1000) &&
+                        attempt.userId == AppState.currentUserIdLoggedIn) {
                     count1DaysAgo++;
                 }
                 if(attempt.dateAttempted < (currentDate - 2 * 24 * 60 * 60 * 1000) &&
-                        attempt.dateAttempted > (currentDate - 3 * 24 * 60 * 60 * 1000)) {
+                        attempt.dateAttempted > (currentDate - 3 * 24 * 60 * 60 * 1000) &&
+                        attempt.userId == AppState.currentUserIdLoggedIn) {
                     count2DaysAgo++;
                 }
                 if(attempt.dateAttempted < (currentDate - 3 * 24 * 60 * 60 * 1000) &&
-                        attempt.dateAttempted > (currentDate - 4 * 24 * 60 * 60 * 1000)) {
+                        attempt.dateAttempted > (currentDate - 4 * 24 * 60 * 60 * 1000) &&
+                        attempt.userId == AppState.currentUserIdLoggedIn) {
                     count3DaysAgo++;
                 }
                 if(attempt.dateAttempted < (currentDate - 4 * 24 * 60 * 60 * 1000) &&
-                        attempt.dateAttempted > (currentDate - 5 * 24 * 60 * 60 * 1000)) {
+                        attempt.dateAttempted > (currentDate - 5 * 24 * 60 * 60 * 1000) &&
+                        attempt.userId == AppState.currentUserIdLoggedIn) {
                     count4DaysAgo++;
                 }
                 if(attempt.dateAttempted < (currentDate - 5 * 24 * 60 * 60 * 1000) &&
-                        attempt.dateAttempted > (currentDate - 6 * 24 * 60 * 60 * 1000)) {
+                        attempt.dateAttempted > (currentDate - 6 * 24 * 60 * 60 * 1000) &&
+                        attempt.userId == AppState.currentUserIdLoggedIn) {
                     count5DaysAgo++;
                 }
                 if(attempt.dateAttempted < (currentDate - 6 * 24 * 60 * 60 * 1000) &&
-                        attempt.dateAttempted > (currentDate - 7 * 24 * 60 * 60 * 1000)) {
+                        attempt.dateAttempted > (currentDate - 7 * 24 * 60 * 60 * 1000) &&
+                        attempt.userId == AppState.currentUserIdLoggedIn) {
                     count6DaysAgo++;
                 }
 
@@ -139,7 +152,7 @@ public class HistoryFragment extends Fragment {
             binding.barChart.setDescription(description);
             //refresh the chart
             binding.barChart.invalidate();
-            binding.challengesAttempted.setText("" +attempts.size());
+            binding.challengesAttempted.setText("" +totalCount);
         });
 
         /*String pattern = "dd/MM";

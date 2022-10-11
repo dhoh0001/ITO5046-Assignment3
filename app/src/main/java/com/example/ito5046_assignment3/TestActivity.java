@@ -32,7 +32,6 @@ public class TestActivity extends AppCompatActivity {
         setSupportActionBar(binding.appBar.toolbar);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
         R.id.nav_home_fragment,
-        R.id.nav_activity_room,
         R.id.nav_register_fragment,
         R.id.nav_history_fragment,
         R.id.nav_challenges_nearby_fragment,

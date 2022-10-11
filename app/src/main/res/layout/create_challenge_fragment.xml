@@ -17,25 +17,27 @@
         android:id="@+id/lattitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="lattitude">
+        android:hint="Lattitude">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/longitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="longitude">
+        android:hint="Longitude">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="titla">
+        android:hint="Title">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +47,7 @@
         android:id="@+id/details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="details">
+        android:hint="Details">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -55,29 +57,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add to Database" />
-    <TextView
-        android:id="@+id/textView_add"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Delete Data" />
     <Button
         android:id="@+id/updateButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Update Data" />
-    <TextView
-        android:id="@+id/textView_update"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
     <Button
-        android:id="@+id/clearButton"
+        android:id="@+id/editButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clear entries" />
+        android:text="Edit Data" />
 </LinearLayout>

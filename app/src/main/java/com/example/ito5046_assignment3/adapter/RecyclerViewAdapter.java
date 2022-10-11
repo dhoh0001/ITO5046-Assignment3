@@ -17,6 +17,7 @@ import com.example.ito5046_assignment3.databinding.RvLayoutBinding;
 import com.example.ito5046_assignment3.entity.Challenge;
 import com.example.ito5046_assignment3.fragment.AttemptChallengeFragment;
 import com.example.ito5046_assignment3.model.AttemptModel;
+import com.example.ito5046_assignment3.model.CoordinatesModel;
 import com.example.ito5046_assignment3.model.CourseResult;
 
 import java.util.List;
@@ -62,7 +63,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.binding.ivItemDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nav_map_Fragment);
+                Bundle bundle=new Bundle();
+                CoordinatesModel coor = new CoordinatesModel();
+                coor.longitude = unit.location_longitude;
+                coor.lattitude = unit.location_lattitude;
+                bundle.putParcelable("coordinates", coor);
+                Navigation.findNavController(v).navigate(R.id.nav_map_Fragment, bundle);
             }
         });
     }

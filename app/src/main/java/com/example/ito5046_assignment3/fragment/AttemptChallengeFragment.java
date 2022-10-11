@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -50,19 +51,23 @@ public class AttemptChallengeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = AttemptChallengeFragmentBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        SharedViewModel model = new
-                ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+
+        ChallengeViewModel model = new
+                ViewModelProvider(getActivity()).get(ChallengeViewModel.class);
 
         Bundle bundle = getArguments();
         int challenge_id = ((AttemptModel) bundle.getParcelable("attempt")).id;
 
         ChallengeViewModel challengeModel = new
                 ViewModelProvider(getActivity()).get(ChallengeViewModel.class);
-        CompletableFuture<Challenge> challengeFuture = challengeModel.findByIDFuture(challenge_id);
-        challengeFuture.thenApply(challenge -> {
-            binding.titleValue.setText(challenge.challengeName);
-            binding.detailValue.setText(challenge.challengeDetails);
-            return challenge;
+
+        model.getAllChallenges().observe(getViewLifecycleOwner(), challenges -> {
+            for(Challenge challenge : challenges) {
+                if(challenge.challenge_id == challenge_id) {
+                    binding.titleValue.setText(challenge.challengeName);
+                    binding.detailValue.setText(challenge.challengeDetails);
+                }
+            }
         });
 
         binding.successButton.setOnClickListener(new View.OnClickListener() {
@@ -96,48 +101,58 @@ public class AttemptChallengeFragment extends Fragment {
                             int p1 = response.body().pos1val;
                             int p2 = response.body().pos2val;
                             int p3 = response.body().pos3val;
+                            String p1u = response.body().pos1;
+                            String p2u = response.body().pos2;
+                            String p3u = response.body().pos3;
+
                             if(successCount > p1) {
                                 p3 = p2;
+                                p3u = p2u;
                                 p2 = p1;
+                                p2u = p1u;
                                 p1 = successCount;
+                                p1u = AppState.currentUserLoggedIn;
                             } else if(successCount > p2) {
                                 p3 = p2;
+                                p3u = p2u;
                                 p2 = successCount;
+                                p2u = AppState.currentUserLoggedIn;
                             } else if(successCount > p3) {
                                 p3 = successCount;
+                                p3u = AppState.currentUserLoggedIn;
                             }
 
-                            Call callRes = retrofitInterface.updateData(new response(response.body().pos1,response.body().pos2,response.body().pos3,p1,p2,p3));
+                            Call callRes = retrofitInterface.updateData(new response(p1u,p2u,p3u,p1,p2,p3));
                             callRes.enqueue(new Callback<response>() {
                                 @Override
                                 public void onResponse(Call<response> call,
                                                        Response<response> response) {
                                     if (response.isSuccessful()) {
-                                        int j = 0;
-
-//getting snippet from the object in the position 0
+                                        Toast.makeText(getContext(),
+                                                        "Data updated",
+                                                        Toast.LENGTH_SHORT)
+                                                .show();
                                     }
                                     else {
-                                        //Log.i("Error ","Response failed");
-                                        int j = 0;
+                                        Toast.makeText(getContext(),
+                                                        "Error updating attempt",
+                                                        Toast.LENGTH_SHORT)
+                                                .show();
                                     }
                                 }
                                 @Override
                                 public void onFailure(Call<response> call, Throwable t){
-                                    try {
-                                        String test = call.execute().toString();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                    //Toast.makeText(LeaderboardFragment.this, t.getMessage(), Toast.LENGTH_SHORT);
+                                    Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT);
                                 }
                             });
 
 //getting snippet from the object in the position 0
                         }
                         else {
-                            //Log.i("Error ","Response failed");
-                            int i = 0;
+                            Toast.makeText(getContext(),
+                                            "Unable to retrieve data",
+                                            Toast.LENGTH_SHORT)
+                                    .show();
                         }
                     }
                     @Override
@@ -147,7 +162,7 @@ public class AttemptChallengeFragment extends Fragment {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        //Toast.makeText(LeaderboardFragment.this, t.getMessage(), Toast.LENGTH_SHORT);
+                        Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -164,6 +179,10 @@ public class AttemptChallengeFragment extends Fragment {
                         new Date().getTime(),
                         -1);
                 model.insert(attempt);
+                Toast.makeText(getContext(),
+                                "Attempt recorded",
+                                Toast.LENGTH_SHORT)
+                        .show();
                 Navigation.findNavController(v).navigate(R.id.nav_challenges_nearby_fragment);
             }
         });
